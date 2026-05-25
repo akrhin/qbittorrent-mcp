@@ -23,10 +23,10 @@ from api import (
     search_torrents_api
 )
 
-# Define key parameters
-DEFAULT_HOST = 'http://127.0.0.1:8080'
-DEFAULT_USERNAME = 'admin'
-DEFAULT_PASSWORD = 'adminadmin'
+# Define key parameters - 优先从环境变量读取，否则使用默认值
+DEFAULT_HOST = os.environ.get('QBITTORRENT_HOST') or 'http://127.0.0.1:8080'
+DEFAULT_USERNAME = os.environ.get('QBITTORRENT_USERNAME') or 'admin'
+DEFAULT_PASSWORD = os.environ.get('QBITTORRENT_PASSWORD') or 'adminadmin'
 
 # Initialize FastMCP server
 app = FastMCP('qbittorrent')
@@ -111,7 +111,7 @@ async def set_global_download_limit(limit: int) -> str:
     Returns:
         Result message of setting speed limit
     """ 
-    return await set_global_download_limit_api(limit)
+    return await set_global_download_limit_api(limit, host=DEFAULT_HOST, username=DEFAULT_USERNAME, password=DEFAULT_PASSWORD)
 
 @app.tool()
 async def set_global_upload_limit(limit: int) -> str:
@@ -124,7 +124,7 @@ async def set_global_upload_limit(limit: int) -> str:
     Returns:
         Result message of setting speed limit
     """
-    return await set_global_upload_limit_api(limit)
+    return await set_global_upload_limit_api(limit, host=DEFAULT_HOST, username=DEFAULT_USERNAME, password=DEFAULT_PASSWORD)
 
 @app.tool()
 async def get_application_version() -> str:
@@ -134,7 +134,7 @@ async def get_application_version() -> str:
     Returns:
         qBittorrent version
     """
-    return await get_application_version_api()
+    return await get_application_version_api(host=DEFAULT_HOST, username=DEFAULT_USERNAME, password=DEFAULT_PASSWORD)
 
 @app.tool()
 async def set_file_priority(hash: str, id: str, priority: int) -> str:

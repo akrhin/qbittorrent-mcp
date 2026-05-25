@@ -27,7 +27,8 @@ async def login_to_qbittorrent(username, password, host):
             data={"username": username, "password": password}
         )
     
-        if response.status_code == 200:
+        # qBittorrent v5.x 返回 204，v4.x 返回 200
+        if response.status_code in (200, 204):
             return response.cookies
         return None
 
@@ -646,7 +647,30 @@ async def get_torrent_list_api(host: str = '', username: str = '', password: str
                 cookies=cookies,
                 headers=headers)
             if response.status_code == 200:
-                return response.json()
+                torrents = response.json()
+                # Format torrent list as readable string
+                if not torrents:
+                    return "No torrents found"
+                results = []
+                for t in torrents:
+                    name = t.get('name', 'Unknown')
+                    state = t.get('state', 'unknown')
+                    progress = t.get('progress', 0) * 100
+                    dlspeed = t.get('dlspeed', 0)
+                    upspeed = t.get('upspeed', 0)
+                    size = t.get('size', 0)
+                    hash_val = t.get('hash', '')
+                    # Format sizes
+                    size_gb = size / (1024**3)
+                    dl_kb = dlspeed / 1024
+                    up_kb = upspeed / 1024
+                    results.append(
+                        f"[{state}] {name}\n"
+                        f"  Progress: {progress:.1f}% | Size: {size_gb:.2f} GB\n"
+                        f"  DL: {dl_kb:.1f} KB/s | UP: {up_kb:.1f} KB/s\n"
+                        f"  Hash: {hash_val}"
+                    )
+                return "\n\n".join(results)
             else:
                 return f"Failed to get torrent list: status code {response.status_code}"
     except Exception as e:
