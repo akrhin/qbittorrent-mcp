@@ -1,0 +1,41 @@
+---
+description: Summary of significant changes to the codebase, organized by session.
+globs: 
+---
+
+# Significant Changes Summary
+
+> High-signal changelog. One entry per session, ordered newest-first. Append, never overwrite.
+
+## Entry Format
+
+```
+### YYYY-MM-DD — [Session goal in a few words]
+
+**Files changed:**
+- `path/to/file` — what changed and why
+
+**New features / fixes:**
+- Bullet-list of user-visible changes
+
+**Refactors / tech debt:**
+- Structural changes not visible to end users
+
+**Configuration / deployment:**
+- Hermes config, env vars, docker, cron, etc.
+
+**Revert / rollback note:**
+- Anything that might need undoing
+```
+
+## Entries
+
+### 2026-07-11 — Initialize backlog rule files
+
+**Files changed:**
+- `.cursor/backlog/each-step-log.mdc` — created
+- `.cursor/backlog/significant-changes-summary.mdc` — created
+
+**New features / fixes:**
+- Added Cursor development log template for tracking session-by-session work
+- Added significant changes summary template for high-signal changelog

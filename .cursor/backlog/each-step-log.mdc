@@ -1,0 +1,21 @@
+---
+description: Log every step of work in this file — goals, decisions, blockers, results. One entry per session.
+globs: 
+---
+
+# Each Step Log
+
+> Record every development session as a dated entry below. Append, never overwrite.
+
+## Log Format
+
+Each entry starts with a `## YYYY-MM-DD` heading and contains:
+
+- **Goal:** What this session set out to do
+- **Context:** Relevant background, issue links, or prior state
+- **Steps:** Ordered list of concrete actions taken
+- **Decisions:** Architectural or design choices made and why
+- **Blockers:** Issues encountered, with status (resolved / unresolved)
+- **Result:** What actually happened — files changed, tests passed/failed, etc.
+
+## Entries
