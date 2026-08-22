@@ -134,7 +134,7 @@ async def get_application_version() -> str:
     Returns:
         qBittorrent version
     """
-    return await get_application_version_api()
+    return await get_application_version_api(DEFAULT_HOST, DEFAULT_USERNAME, DEFAULT_PASSWORD)
 
 @app.tool()
 async def set_file_priority(hash: str, id: str, priority: int) -> str:

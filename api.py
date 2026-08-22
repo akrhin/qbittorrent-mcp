@@ -27,7 +27,7 @@ async def login_to_qbittorrent(username, password, host):
             data={"username": username, "password": password}
         )
     
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 204:
             return response.cookies
         return None
 
