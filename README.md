@@ -29,6 +29,11 @@ This service provides the following features:
 ### System Information
 - `get_application_version`: Get qBittorrent application version
 
+## Known issues
+
+Список дефектов, найденных при подключении к mcprig (2026-11-10), с замерами
+и предложениями — [ISSUES.md](ISSUES.md).
+
 ## Configuration
 
 The service uses the following configuration parameters:
