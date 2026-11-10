@@ -8,3 +8,7 @@ dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.8.1",
 ]
+[tool.ruff]
+# 2026-09-27: единый стиль Python-форматирования по всем репам (ruff format).
+# line-length согласован с printWidth 100 у prettier.
+line-length = 100
